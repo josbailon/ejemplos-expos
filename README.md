@@ -32,3 +32,6 @@ Carpeta que contiene ejemplos de uso correcto e incorrecto del patrón Builder, 
 
 ## instalar para abstract factory
 pip install factory_boy
+
+## acceso a la diapositiva 
+https://uleam-my.sharepoint.com/:p:/g/personal/e1317829073_live_uleam_edu_ec/EfZx45G5rSdOnN18TCgFZKYBJJDLdjYktfagaqP-UDzvew?e=9hJXqH
