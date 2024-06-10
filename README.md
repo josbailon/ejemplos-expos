@@ -29,3 +29,6 @@ Carpeta que contiene ejemplos de implementaciones del patrón Builder.
 ### Ejemplos de Uso Correcto e Incorrecto del Builder
 
 Carpeta que contiene ejemplos de uso correcto e incorrecto del patrón Builder, junto con comentarios detallados en el código.
+
+## instalar para abstract factory
+pip install factory_boy

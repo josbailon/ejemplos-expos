@@ -1,41 +1,79 @@
 from abc import ABC, abstractmethod
-from factory_boy import Factory, SubFactory
 
-# Definir la interfaz de la fábrica abstracta
-class PizzaFactory(Factory):
+# Interfaz de la fábrica abstracta
+class AbstractFactory(ABC):
     @abstractmethod
-    def create_dough(self):
+    def create_product_a(self):
         pass
 
     @abstractmethod
-    def create_sauce(self):
+    def create_product_b(self):
         pass
 
+# Fábrica concreta 1
+class ConcreteFactory1(AbstractFactory):
+    def create_product_a(self):
+        return ConcreteProductA1()
+
+    def create_product_b(self):
+        return ConcreteProductB1()
+
+# Fábrica concreta 2
+class ConcreteFactory2(AbstractFactory):
+    def create_product_a(self):
+        return ConcreteProductA2()
+
+    def create_product_b(self):
+        return ConcreteProductB2()
+
+# Interfaz de productos
+class AbstractProductA(ABC):
     @abstractmethod
-    def create_toppings(self):
+    def operation_a(self):
         pass
 
-# Fábrica concreta para pizzas de masa fina
-class ThinCrustPizzaFactory(PizzaFactory):
-    def create_dough(self):
-        return "Thin crust"
+# Producto concreto A1
+class ConcreteProductA1(AbstractProductA):
+    def operation_a(self):
+        return "Operation A1"
 
-    def create_sauce(self):
-        return "Tomato"
+# Producto concreto A2
+class ConcreteProductA2(AbstractProductA):
+    def operation_a(self):
+        return "Operation A2"
 
-    def create_toppings(self):
-        return ["Cheese", "Pepperoni"]
+# Interfaz de productos
+class AbstractProductB(ABC):
+    @abstractmethod
+    def operation_b(self):
+        pass
+
+# Producto concreto B1
+class ConcreteProductB1(AbstractProductB):
+    def operation_b(self):
+        return "Operation B1"
+
+# Producto concreto B2
+class ConcreteProductB2(AbstractProductB):
+    def operation_b(self):
+        return "Operation B2"
 
 # Cliente
-class PizzaStore:
-    def create_pizza(self, factory):
-        dough = factory.create_dough()
-        sauce = factory.create_sauce()
-        toppings = factory.create_toppings()
-        return dough, sauce, toppings
+class Client:
+    def __init__(self, factory):
+        self.factory = factory
 
-# Crear una pizza utilizando una fábrica concreta
-thin_crust_factory = ThinCrustPizzaFactory()
-pizza_store = PizzaStore()
-pizza = pizza_store.create_pizza(thin_crust_factory)
-print("Thin Crust Pizza:", pizza)
+    def use_products(self):
+        product_a = self.factory.create_product_a()
+        product_b = self.factory.create_product_b()
+        print("Product A:", product_a.operation_a())
+        print("Product B:", product_b.operation_b())
+
+# Uso del patrón Abstract Factory
+factory1 = ConcreteFactory1()
+client1 = Client(factory1)
+client1.use_products()
+
+factory2 = ConcreteFactory2()
+client2 = Client(factory2)
+client2.use_products()
